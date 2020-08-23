@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_21_180044) do
+ActiveRecord::Schema.define(version: 2020_08_23_223611) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 2020_08_21_180044) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "directors", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "directors_films", id: false, force: :cascade do |t|
+    t.integer "director_id"
+    t.integer "film_id"
+    t.index ["director_id"], name: "index_directors_films_on_director_id"
+    t.index ["film_id"], name: "index_directors_films_on_film_id"
+  end
+
   create_table "films", force: :cascade do |t|
     t.string "title"
     t.string "title_original"
@@ -46,6 +57,17 @@ ActiveRecord::Schema.define(version: 2020_08_21_180044) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "films_genres", id: false, force: :cascade do |t|
+    t.integer "genre_id"
+    t.integer "film_id"
+    t.index ["film_id"], name: "index_films_genres_on_film_id"
+    t.index ["genre_id"], name: "index_films_genres_on_genre_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
   end
 
 end
