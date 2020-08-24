@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Director do
   permit_params :name
 
@@ -13,6 +15,4 @@ ActiveAdmin.register Director do
     end
     f.actions
   end
-
-  
 end
