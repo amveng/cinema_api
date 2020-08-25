@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe AdminUser, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'проверяем наличие стандартного админ юзера в базе' do
+    admin = AdminUser.first
+    expect(admin.email).to eq 'admin@example.com'
+  end
 end

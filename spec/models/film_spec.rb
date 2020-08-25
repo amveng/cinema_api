@@ -1,10 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Film, type: :model do
-  it 'создаем фильм и ищем в базе по названию фильма' do
-    Film.create(title: 'фильм')
-    film = Film.where(title: 'фильм')
-    expect(film.count).to eq 1
-    expect(film[0].title).to eq 'фильм'
+  context 'validations tests' do
+    it 'ensures the title is present' do
+      film = Film.new
+      expect(film.valid?).to eq(false)
+    end
+
+    it 'should be able to save film' do
+      film = Film.new(title: 'фильм')
+      expect(film.save).to eq(true)
+    end
   end
 end
