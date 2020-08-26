@@ -20,4 +20,11 @@ RSpec.describe FilmsController, type: :controller do
       expect(response.content_type).to eq 'application/json; charset=utf-8'
     end
   end
+  context 'pagination' do
+    it 'check for all parametrs' do
+      get :index, params: { page: 2, per_page: 1 }
+      # p JSON.parse(response.body)
+      expect(response.body).to include('current_page', 'previous_page')
+    end
+  end
 end
