@@ -13,7 +13,6 @@ RSpec.describe FilmsController, type: :controller do
       Film.create(title: 'фильм')
       get :show, params: { id: Film.first.id }
       expect(response.status).to eq(200)
-      # expect(response).to have_http_status(:ok)
     end
 
     it '#index to format json' do
@@ -24,8 +23,7 @@ RSpec.describe FilmsController, type: :controller do
   context 'pagination' do
     it 'check for all parametrs' do
       get :index, params: { page: 2, per_page: 1 }
-      # p JSON.parse(response.body)
-      expect(response.body).to include('curAArent_page', 'previous_page')
+      expect(response.body).to include('current_page', 'previous_page')
     end
   end
 end
