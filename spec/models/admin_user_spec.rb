@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe AdminUser, type: :model do
-  it 'проверяем наличие стандартного админ юзера в базе' do
-    admin = AdminUser.first
-    expect(admin.email).to eq 'admin@example.com'
+  it 'проверяем создание админа' do
+    admin = AdminUser.new(
+      email: 'admin@email.com',
+      password: 'password'
+    )
+    expect(admin.save).to eq(true)
   end
 end

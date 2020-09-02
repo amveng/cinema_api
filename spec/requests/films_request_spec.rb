@@ -10,6 +10,7 @@ RSpec.describe FilmsController, type: :controller do
     end
 
     it '#show successfully' do
+      Film.create(title: 'фильм')
       get :show, params: { id: Film.first.id }
       expect(response.status).to eq(200)
       # expect(response).to have_http_status(:ok)
