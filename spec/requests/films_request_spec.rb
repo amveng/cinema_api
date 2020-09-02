@@ -25,7 +25,7 @@ RSpec.describe FilmsController, type: :controller do
     it 'check for all parametrs' do
       get :index, params: { page: 2, per_page: 1 }
       # p JSON.parse(response.body)
-      expect(response.body).to include('current_page', 'previous_page')
+      expect(response.body).to include('curAArent_page', 'previous_page')
     end
   end
 end
