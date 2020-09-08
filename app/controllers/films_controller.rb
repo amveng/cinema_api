@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 class FilmsController < ApplicationController
-  def index 
-    films = Film.page(page).per(per_page)
+  def index
+    genre = Genre.find_by(name: params[:genre])
+    films = if genre.present?
+              genre.films.page(page).per(per_page)
+            else
+              Film.page(page).per(per_page)
+            end
     render json: { films: films.as_json(
       only: %i[id title title_original image production_year genres]
     ), meta: pagination_dict(films) }, status: 200
@@ -16,11 +21,11 @@ class FilmsController < ApplicationController
   private
 
   def page
-    @page ||=  params[:page] || 1
+    @page ||= params[:page] || 1
   end
 
   def per_page
-    @per_page ||=  params[:per_page] || 10
+    @per_page ||= params[:per_page] || 10
   end
 
   def pagination_dict(collection)
