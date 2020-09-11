@@ -9,8 +9,8 @@ class ActorsController < ApplicationController
   end
 
   def show
-    actor = Film.find(params[:id])
-    render json: { film: actor }, status: 200
+    actor = Actor.find(params[:id])
+    render json: { actor: actor }, status: 200
   end
 
   private
